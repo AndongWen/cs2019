@@ -1,9 +1,12 @@
 def bubble_sort(a):
 	for j in range(len(a), 0, -1):
+		found = False
 		for i in range(0, j-1):
 			if a[i] > a[i+1]:
 				a[i], a[i+1] = a[i+1], a[i]
-		
+				found = True
+		if not found:
+			break
 
 def main():
 	a = [9,0,1,3,2,5,7,4,8,6]

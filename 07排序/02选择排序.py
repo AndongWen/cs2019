@@ -6,8 +6,9 @@ def select_sort(a):
 		for i in range(j, n-1):
 			if a[min] > a[i+1]:
 				min = i+1
-		a[j], a[min] = a[min], a[j]
-
+		if min != j:
+			a[j], a[min] = a[min], a[j] # 此步骤导致不稳定性
+		# 使之稳定：逐个后移min之前那些没有排序的元素
 
 def main():
 	a = [1,0,2,9,3,8,7,4,6,5]
