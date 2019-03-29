@@ -141,7 +141,8 @@ class SCLink(object):
 class Josephus(SCLink):
 	def turn(self, m):
 		'''通过尾节点来定位'''
-		for i in range(1, m):
+		for i in range( m):
+			# 尾指针转动m次
 			self._rear = self._rear.next_
 
 	def __init__(self, n, k, m):
@@ -151,8 +152,9 @@ class Josephus(SCLink):
 			self.append(i+1)	
 		self.turn(k-1)	
 		while not self.is_empty():
+			# 从开始位置数m-1个位置，第m个位置的节点被剔除，即头结点删除
 			self.turn(m-1)
-			print(self.pop(), end = ('\n' if self.is_empty() else ', '))
+			print(self.pop_first(), end = ('\n' if self.is_empty() else ', '))
 		
 		
 def main():
