@@ -21,7 +21,7 @@ def kmp_match(s, t):
 	for i in a:
 		print(i)
 	while i < m and j < n:
-		if s[i] == t[j]:
+		if j == -1 or s[i] == t[j]:
 			i += 1
 			j += 1
 		else:
@@ -33,7 +33,7 @@ def kmp_match(s, t):
 
 def main():
 	a = 'abceabcdfghjgblackjgtrehrtet'
-	b = 'abcd'
+	b = 'blackj'
 	x = kmp_match(a, b)
 	print(x)
 
