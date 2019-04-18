@@ -6,6 +6,7 @@ class PrioQueue(object):
 	'''
 		using heaps
 		由于向上筛选需要保持其他路径保持有序-->表末尾添加
+		实质为堆的性质
 	'''
 	def __init__(self, a = []):
 		self._elems = list(a) # 做一个表的拷贝为了排除数据共享,允许任何可迭代作为参数
@@ -43,8 +44,8 @@ class PrioQueue(object):
 			self.select_down(e, len(elems))
 		return de_e
 
-	def select_down(self, e, end):
-		elems, i, j = self._elems, 0, 0*2+1
+	def select_down(self, e, begin, end):
+		elems, i, j = self._elems, begin, begin*2+1
 		while j < end:
 			if j+1 < end and elem[j] > elem[j+1]:
 				j += 1
@@ -57,4 +58,4 @@ class PrioQueue(object):
 	def buildheap(self):
 		end = len(self._elems)
 		for i in range(end//2, -1, -1):
-			self.select_up(self._elems[-1], end)
+			self.select_up(self._elems[-1], i, end)
