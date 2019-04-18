@@ -11,9 +11,9 @@ def heap_sort(elems):
 		elem[i] = e
 
 	end = len(elems)
-	for i in range(end//2, -1, -1):
+	for i in range(end//2, -1, -1): # 对原来的列表进行建堆
 		select_down(elems, elem[i], i, end)
-	for i in range((end-1), 0, -1):
+	for i in range((end-1), 0, -1): # 每次取出一个元素并将新元素放入进行排序 O(nlogn)
 		e = elems[i]
 		elems[i] = elems[0]
 		select_down(elems, e, 0, i)
