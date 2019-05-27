@@ -38,16 +38,16 @@ class PrioQueue(object):
 		if self.is_empty():
 			raise PrioQueueError('in dequeue')
 		elems = self._elems
-		de_e = elem[0]
-		e = elem.pop()
+		de_e = elems[0]
+		e = elems.pop()
 		if len(elems) > 0:
-			self.select_down(e, len(elems))
+			self.select_down(e, 0, len(elems))
 		return de_e
 
 	def select_down(self, e, begin, end):
 		elems, i, j = self._elems, begin, begin*2+1
 		while j < end:
-			if j+1 < end and elem[j] > elem[j+1]:
+			if j+1 < end and elem[j] > elem[j+1]: # 判断是否有右孩子，且右孩子更小
 				j += 1
 			if e < elem[j]:
 				break
@@ -58,4 +58,4 @@ class PrioQueue(object):
 	def buildheap(self):
 		end = len(self._elems)
 		for i in range(end//2, -1, -1):
-			self.select_up(self._elems[-1], i, end)
+			self.select_down(self._elems[i], i, end)
